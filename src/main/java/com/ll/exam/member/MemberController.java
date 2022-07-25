@@ -1,2 +1,9 @@
-package com.ll.exam.member;public class MemberController {
+package com.ll.exam.member;
+
+import com.ll.exam.Rq;
+
+public class MemberController {
+    public void showLogin(Rq rq){
+        rq.appendBody("로그인 페이지");
+    }
 }
