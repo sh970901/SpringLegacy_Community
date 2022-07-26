@@ -7,15 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleController {
+    private ArticleService articleService;
+
+    public ArticleController() {
+        articleService = new ArticleService();
+    }
     public void showList(Rq rq){
         List<ArticleDto> articles = new ArrayList<>();
         articles.add(new ArticleDto(1, "제목1", "내용1"));
-        articles.add(new ArticleDto(2, "제목2", "내용2"));
-        articles.add(new ArticleDto(3, "제목3", "내용3"));
+        String title = rq.getParam("title", "");
+        String body = rq.getParam("body", "");
 
-        rq.setAttr("articles", articles);
-        rq.view("/jsp/usr/article/list");
+        long id = articleService.write(title, body);
 
+        rq.appendBody("%d번 게시물이 생성 되었습니다.".formatted(id));
     }
 
     public void showWrite(Rq rq) {
