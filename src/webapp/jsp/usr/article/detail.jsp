@@ -3,6 +3,7 @@
 
 <%
     ArticleDto article = (ArticleDto)request.getAttribute("article");
+
 %>
 
 <h1>게시물 상세페이지</h1>

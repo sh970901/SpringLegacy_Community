@@ -1,6 +1,5 @@
 package com.ll.exam;
 
-import com.ll.exam.article.dto.ArticleDto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +7,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 public class Rq {
     private final HttpServletRequest req;
@@ -26,6 +24,7 @@ public class Rq {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=utf-8");
     }
+
     public String getParam(String paramName, String defaultValue) {
         String value = req.getParameter(paramName);
 
@@ -35,6 +34,7 @@ public class Rq {
 
         return value;
     }
+
     public int getIntParam(String paramName, int defaultValue) {
         String value = req.getParameter(paramName);
 
@@ -62,9 +62,10 @@ public class Rq {
     }
 
     public void view(String path) {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(path+".jsp");
+        // gugudan2.jsp 에게 나머지 작업을 토스
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/" + path + ".jsp");
         try {
-            requestDispatcher.forward(req,resp);
+            requestDispatcher.forward(req, resp);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -76,15 +77,16 @@ public class Rq {
         return req.getRequestURI();
     }
 
-    public String getActionPath(){
+    public String getActionPath() {
         String[] bits = req.getRequestURI().split("/");
 
-        return "/%s/%s/%s".formatted(bits[1],bits[2],bits[3]);
+        return "/%s/%s/%s".formatted(bits[1], bits[2], bits[3]);
     }
 
     public String getMethod() {
         return req.getMethod();
     }
+
     public long getLongPathValueByIndex(int index, long defaultValue) {
         String value = getPathValueByIndex(index, null);
 
