@@ -12,6 +12,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
     @Test
+    void mapOf() {
+        Map<String, Object> map = Ut.mapOf("age", 11, "name", "Paul");
+
+        assertThat(map.get("age")).isEqualTo(11);
+        assertThat(map.get("name")).isEqualTo("Paul");
+    }
+
+    @Test
     void assertJ__assertThat() {
         int rs = 10 + 20;
         assertThat(rs).isEqualTo(30);
@@ -87,9 +95,9 @@ public class AppTest {
         articleDtoMap.put("최신", new ArticleDto(2, "제목2", "내용2"));
         String jsonStr = Ut.json.toStr(articleDtoMap, "");
 
-        Map<String, ArticleDto> articleDtoMapFromJson = Ut.json.toMap(jsonStr, new TypeReference<>() {
+        Map<String, ArticleDto> articleDtoMapFromJson = Ut.json.toObj(jsonStr, new TypeReference<>() {
         }, null);
 
-        System.out.println(jsonStr);
+        assertThat(articleDtoMapFromJson).isEqualTo(articleDtoMap);
     }
 }
