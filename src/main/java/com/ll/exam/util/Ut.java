@@ -49,6 +49,7 @@ public class Ut {
                 return defaultValue;
             }
         }
+
         public static <T> T toObj(String jsonStr, TypeReference<T> typeReference, T defaultValue) {
             try {
                 return om.readValue(jsonStr, typeReference);
