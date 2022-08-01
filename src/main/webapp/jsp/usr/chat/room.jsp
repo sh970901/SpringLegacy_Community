@@ -56,15 +56,16 @@ function ChatRoomSave__submitForm(form) {
                 작성
             </button>
         </form>
-            id roomId body
+
+        <ul class="mt-5">
+            <c:forEach items="${messages}" var="message">
+                <li class="flex">
+                    <span>ID: ${message.id}
+                        &nbsp;
+                    <span>메시지: ${message.body}</span>
+                </li>
+            </c:forEach>
         </ul>
-        <c:forEach items="${messages}" var="messages">
-            <li class="flex">
-                <a class="w-[40px] hover:underline hover:text-[red]" >${messages.id}</a>
-                <a class="w-[40px] hover:underline hover:text-[red]">${messages.roomId}</a>
-                <a class="w-[80px] hover:underline hover:text-[red]" >${messages.body}</a>
-            </li>
-        </c:forEach>
         ${messages}
     </div>
 </section>
