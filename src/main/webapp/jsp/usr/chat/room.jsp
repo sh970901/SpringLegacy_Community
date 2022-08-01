@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../common/head.jspf"%>
 
 <script>
@@ -50,13 +50,21 @@ function ChatRoomSave__submitForm(form) {
         }
         </script>
 
-        <form onsubmit="ChatMessageSave__submitForm(this); return false;" method="POST" action="/usr/chat/writeMessage/2">
+        <form onsubmit="ChatMessageSave__submitForm(this); return false;" method="POST" action="/usr/chat/writeMessage/${room.id}">
             <input autofocus name="body" type="text" placeholder="메세지를 입력해주세요." class="input input-bordered" />
             <button type="submit" value="" class="btn btn-outline btn-primary">
                 작성
             </button>
         </form>
-
+            id roomId body
+        </ul>
+        <c:forEach items="${messages}" var="messages">
+            <li class="flex">
+                <a class="w-[40px] hover:underline hover:text-[red]" >${messages.id}</a>
+                <a class="w-[40px] hover:underline hover:text-[red]">${messages.roomId}</a>
+                <a class="w-[80px] hover:underline hover:text-[red]" >${messages.body}</a>
+            </li>
+        </c:forEach>
         ${messages}
     </div>
 </section>
