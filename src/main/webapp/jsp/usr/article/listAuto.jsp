@@ -4,15 +4,16 @@
 <%@ include file="../common/head.jspf"%>
 
 <script>
-    let Articles__lastId = 0;
-    function Articles__loadMore() {
-        fetch(`/usr/article/getArticles/free?fromId=\${Articles__lastId}`)
-            .then(data => data.json())
-            .then(responseData => {
-                const articles = responseData.data;
-                for ( const index in articles ) {
-                    const article = articles[index];
-                    const html = `
+let Articles__lastId = 0;
+function Articles__loadMore() {
+    fetch(`/usr/article/getArticles/free?fromId=\${Articles__lastId}`)
+        .then(data => data.json())
+        .then(responseData => {
+            const articles = responseData.data;
+            for ( const index in articles ) {
+                const article = articles[index];
+
+                const html = `
                     <li class="flex">
                         <a class="w-[40px] hover:underline hover:text-[red]" href="/usr/article/detail/free/\${article.id}">\${article.id}</a>
                         <a class="flex-grow hover:underline hover:text-[red]" href="/usr/article/detail/free/\${article.id}">\${article.title}</a>
@@ -20,15 +21,18 @@
                         <a class="hover:underline hover:text-[red]" href="/usr/article/modify/free/\${article.id}">수정</a>
                     </li>
                 `;
-                    $('.articles').append(html);
-                }
-                if ( articles.length > 0 ) {
-                    Articles__lastId = articles[articles.length - 1].id;
-                }
-                Articles__loadMore(); // 즉시 실행
-                // setTimeout(Articles__loadMore, 3000); // Articles__loadMore(); 를 3초 뒤에 수행
-            });
-    }
+
+                $('.articles').append(html);
+            }
+
+            if ( articles.length > 0 ) {
+                Articles__lastId = articles[articles.length - 1].id;
+            }
+
+            // Articles__loadMore(); // 즉시 실행
+            setTimeout(Articles__loadMore, 3000); // Articles__loadMore(); 를 3초 뒤에 수행
+        });
+}
 </script>
 
 <section>
@@ -46,7 +50,7 @@
 </section>
 
 <script>
-    Articles__loadMore();
+Articles__loadMore();
 </script>
 
 <%@ include file="../common/foot.jspf"%>
