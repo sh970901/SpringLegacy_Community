@@ -42,4 +42,33 @@ public class ChatMessageRepository {
                 .filter(chatMessageDto -> chatMessageDto.getRoomId() == roomId)
                 .collect(Collectors.toList());
     }
+
+    public List<ChatMessageDto> findByRoomIdGreaterThan(long roomId, long fromId) {
+        return datum
+                .stream()
+                .filter(chatMessageDto -> chatMessageDto.getRoomId() == roomId)
+                .filter(chatMessageDto -> chatMessageDto.getId() > fromId)
+                .collect(Collectors.toList());
+    }
+
+    public ChatMessageDto findById(long id) {
+        for (ChatMessageDto chatMessageDto : datum) {
+            if (chatMessageDto.getId() == id) {
+                return chatMessageDto;
+            }
+        }
+
+        return null;
+    }
+
+
+    public void deleteMessage(long id) {
+        ChatMessageDto chatMessageDto = findById(id);
+
+        if (chatMessageDto == null) {
+            return;
+        }
+
+        datum.remove(chatMessageDto);
+    }
 }

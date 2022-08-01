@@ -1,7 +1,7 @@
 package com.ll.exam.article;
 
 import com.ll.exam.Rq;
-import com.ll.exam.article.dto.ArticletDto;
+import com.ll.exam.article.dto.ArticleDto;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class ArticleController {
     }
 
     public void showList(Rq rq) {
-        List<ArticletDto> articleDtos = articleService.findAll();
+        List<ArticleDto> articleDtos = articleService.findAll();
 
         rq.setAttr("articles", articleDtos);
         rq.view("usr/article/list");
@@ -27,7 +27,7 @@ public class ArticleController {
         rq.view("usr/article/write");
     }
 
-    public void doWrite(Rq rq) {
+    public void write(Rq rq) {
         String title = rq.getParam("title", "");
         String body = rq.getParam("body", "");
 
@@ -54,7 +54,7 @@ public class ArticleController {
             return;
         }
 
-        ArticletDto articleDto = articleService.findById(id);
+        ArticleDto articleDto = articleService.findById(id);
 
         if (articleDto == null) {
             rq.historyBack("해당 글이 존재하지 않습니다.");
@@ -65,7 +65,7 @@ public class ArticleController {
         rq.view("usr/article/detail");
     }
 
-    public void doDelete(Rq rq) {
+    public void delete(Rq rq) {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
@@ -73,7 +73,7 @@ public class ArticleController {
             return;
         }
 
-        ArticletDto articleDto = articleService.findById(id);
+        ArticleDto articleDto = articleService.findById(id);
 
         if (articleDto == null) {
             rq.historyBack("해당 글이 존재하지 않습니다.");
@@ -93,7 +93,7 @@ public class ArticleController {
             return;
         }
 
-        ArticletDto articleDto = articleService.findById(id);
+        ArticleDto articleDto = articleService.findById(id);
 
         if (articleDto == null) {
             rq.historyBack("해당 글이 존재하지 않습니다.");
@@ -104,7 +104,7 @@ public class ArticleController {
         rq.view("usr/article/modify");
     }
 
-    public void doModify(Rq rq) {
+    public void modify(Rq rq) {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
@@ -112,7 +112,7 @@ public class ArticleController {
             return;
         }
 
-        ArticletDto articleDto = articleService.findById(id);
+        ArticleDto articleDto = articleService.findById(id);
 
         if (articleDto == null) {
             rq.historyBack("해당 글이 존재하지 않습니다.");
@@ -132,7 +132,7 @@ public class ArticleController {
     public void getArticles(Rq rq) {
         long fromId = rq.getLongParam("fromId", -1);
 
-        List<ArticletDto> articleDtos = null;
+        List<ArticleDto> articleDtos = null;
 
         if ( fromId == -1 ) {
             articleDtos = articleService.findAll();
