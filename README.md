@@ -1,4 +1,4 @@
-### Spring Legacy Community Project 
+### Spring Legacy Community Project
 
 ---
 #### Getting Started
@@ -37,3 +37,5 @@
 - 채팅방 내용
 
 ![img_3.png](img_3.png)
+
+
