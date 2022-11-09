@@ -70,6 +70,9 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/chat/writeMessageAjax":
                         chatController.writeMessageAjax(rq);
                         break;
+                    case "/usr/chat/modifyMessageAjax":
+                        chatController.modifyMessageAjax(rq);
+                        break;
                     case "/usr/chat/createRoom":
                         chatController.createRoom(rq);
                         break;
@@ -92,16 +95,23 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/chat/deleteMessage":
                         chatController.deleteMessage(rq);
                         break;
+                    case "/usr/chat/deleteMessageAjax":
+                        chatController.deleteMessageAjax(rq);
+                        break;
                     case "/usr/article/delete":
                         articleController.delete(rq);
                         break;
-
                 }
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        doGet(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         doGet(req, resp);
     }
 }
