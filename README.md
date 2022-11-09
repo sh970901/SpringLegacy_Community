@@ -18,7 +18,7 @@
 
 ---
 #### Prject Structure
-![img.png](img.png)
+![img.png](readmeImg/img.png)
 
 ---
 #### 구현 기능
@@ -28,14 +28,14 @@
 #### 결과물
 - 게시글
 
-![img_1.png](img_1.png)
+![img_1.png](readmeImg/img_1.png)
 
 - 채팅방 생성
 
-![img_2.png](img_2.png)
+![img_2.png](readmeImg/img_2.png)
 
 - 채팅방 내용
 
-![img_3.png](img_3.png)
+![img_3.png](readmeImg/img_3.png)
 
 
